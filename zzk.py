@@ -111,8 +111,8 @@ class Zzk:
         chat_server = 'wss://' + random.choice(CHAT_SERVERS) + '/chat'
         async with aiohttp.ClientSession() as session:
             cid = await self._get_channel_id(session, channel_id)
+            assert cid is not None, "Cannot get chatroom id. Is it age-restricted?"
             accTkn = await self._get_token(session, cid)
-            print(cid)
             async with session.ws_connect(chat_server) as ws:
                 await ws.send_json({
                     'ver': '2',
