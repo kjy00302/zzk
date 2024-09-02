@@ -38,7 +38,7 @@ class BasicChatViewer(zzk.Zzk):
         user = BasicChatViewer._profile_to_displayname(msg.profile)
         message = msg.message.strip()
         if self._use_iterm_emote:
-            if emotes := msg.extras.get('emotes'):
+            if emotes := msg.extras.get('emojis'):
                 for k, v in emotes.items():
                     if not self._emote_cache.get(k):
                         self._emote_cache[k] = await self._fetch_emote(sess, v)
